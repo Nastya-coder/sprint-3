@@ -1,4 +1,5 @@
 from config import *
+from urls import Urls
 
 def test_registration(website):
     registration = website.open_page("registration")
@@ -7,7 +8,7 @@ def test_registration(website):
     registration.input_password().send_keys(REGISTRATION_PASSWORD)
     registration.button_register().click()
     website.wait_for_url("/login")
-    assert website.current_url() == "https://stellarburgers.nomoreparties.site/login" \
+    assert website.current_url() == Urls.login \
         and website.page('login').label_login().is_displayed()
 
 
