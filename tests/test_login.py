@@ -1,8 +1,8 @@
 from urls import Urls
 
-def test_login(website):
+def check_login(website):
     website.login()
-    assert website.current_url() == Urls.main \
+    return website.current_url() == Urls.main \
         and website.page('main').button_order().is_displayed()
     
 
@@ -11,8 +11,8 @@ def test_login_main_page(website):
     page_main.button_login().click()
     website.wait_for_url("/login")
     assert website.current_url() == Urls.login \
-        and website.page('login').label_login().is_displayed()
-    test_login(website)
+        and website.page('login').label_login().is_displayed() \
+        and check_login(website)
 
 
 def test_login_account_button(website):
@@ -20,8 +20,8 @@ def test_login_account_button(website):
     page_main.button_account().click()
     website.wait_for_url("/login")
     assert website.current_url() == Urls.login \
-        and website.page('login').label_login().is_displayed()
-    test_login(website)    
+        and website.page('login').label_login().is_displayed() \
+        and check_login(website)    
 
 
 def test_login_registration(website):
@@ -29,8 +29,8 @@ def test_login_registration(website):
     page_registration.button_login().click()
     website.wait_for_url("/login")
     assert website.current_url() == Urls.login \
-        and website.page('login').label_login().is_displayed()
-    test_login(website)      
+        and website.page('login').label_login().is_displayed() \
+        and check_login(website)      
 
 
 def test_login_forgot_password_page(website):
@@ -38,5 +38,5 @@ def test_login_forgot_password_page(website):
     page_forgot.button_login().click()
     website.wait_for_url("/login")
     assert website.current_url() == Urls.login \
-        and website.page('login').label_login().is_displayed()
-    test_login(website)  
+        and website.page('login').label_login().is_displayed() \
+        and check_login(website)  
